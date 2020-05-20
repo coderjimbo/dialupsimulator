@@ -151,6 +151,46 @@ namespace DialUpSimulator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon ac1 {
+            get {
+                object obj = ResourceManager.GetObject("ac1", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon ac2 {
+            get {
+                object obj = ResourceManager.GetObject("ac2", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon ac3 {
+            get {
+                object obj = ResourceManager.GetObject("ac3", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon ac4 {
+            get {
+                object obj = ResourceManager.GetObject("ac4", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap connecting {
@@ -218,6 +258,16 @@ namespace DialUpSimulator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon phone_dialer_icon {
+            get {
+                object obj = ResourceManager.GetObject("phone_dialer_icon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream pound {
@@ -232,6 +282,16 @@ namespace DialUpSimulator.Properties {
         internal static System.IO.UnmanagedMemoryStream star {
             get {
                 return ResourceManager.GetStream("star", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap taskbar {
+            get {
+                object obj = ResourceManager.GetObject("taskbar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

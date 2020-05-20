@@ -43,21 +43,33 @@ namespace DialUpSimulator
         {
             connectionStrings.Add("Opening port...");
             connectionStrings.Add("Dialing " + phoneNumberToDial + "...");
-            connectionStrings.Add("Verifying username and password...");
-            connectionStrings.Add("Registering your computer on the network...");
+            connectionStrings.Add("Verifying user name and password...");
+            connectionStrings.Add("Logging on to network...");
             connectionStrings.Add("Authenticated.");
         }
 
         private void cancel_button_Click(object sender, EventArgs e)
         {
-            CloseApplication();
+            CloseApplication(true);
         }
 
-        private void CloseApplication()
+        private void CloseApplication(bool fromCancel)
         {
-            Utilities.EnableActiveNetwork();
+            if(!fromCancel)
+            {
+                Utilities.EnableActiveNetwork();
+                if ((bool)Properties.Settings.Default["doNotShowConnectionEstablished"] == false)
+                {
+                    var connectionEstablishedForm = new ConnectionEstablishedForm();
+                    connectionEstablishedForm.Show();
+                }
+                var connectedToForm = new ConnectedToForm();
+                connectedToForm.Show();
+            } else
+            {
+                Application.OpenForms[0].Close();
+            }
             this.Close();
-            Application.OpenForms[0].Close();
         }
 
         private void dialup_simulation_worker_DoWork(object sender, DoWorkEventArgs e)
@@ -113,6 +125,7 @@ namespace DialUpSimulator
         {
             worker.ReportProgress(100);
             System.Threading.Thread.Sleep(500);
+            
         }
 
         private UnmanagedMemoryStream getResourceFromCharacter(char character)
@@ -150,7 +163,7 @@ namespace DialUpSimulator
 
         private void dialup_simulation_worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            CloseApplication();
+            CloseApplication(false);
         }
 
         private void dialup_simulation_worker_ProgressChanged(object sender, ProgressChangedEventArgs e)

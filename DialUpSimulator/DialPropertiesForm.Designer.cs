@@ -39,6 +39,7 @@
             this.about_button = new System.Windows.Forms.Button();
             this.device_icon = new System.Windows.Forms.PictureBox();
             this.monitor_icon = new System.Windows.Forms.PictureBox();
+            this.showInformational_checkBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.device_icon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.monitor_icon)).BeginInit();
             this.SuspendLayout();
@@ -138,12 +139,23 @@
             this.monitor_icon.TabIndex = 0;
             this.monitor_icon.TabStop = false;
             // 
+            // showInformational_checkBox
+            // 
+            this.showInformational_checkBox.AutoSize = true;
+            this.showInformational_checkBox.Location = new System.Drawing.Point(158, 161);
+            this.showInformational_checkBox.Name = "showInformational_checkBox";
+            this.showInformational_checkBox.Size = new System.Drawing.Size(229, 17);
+            this.showInformational_checkBox.TabIndex = 10;
+            this.showInformational_checkBox.Text = "Show &informational dialog when connected";
+            this.showInformational_checkBox.UseVisualStyleBackColor = true;
+            // 
             // DialPropertiesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(424, 281);
             this.ControlBox = false;
+            this.Controls.Add(this.showInformational_checkBox);
             this.Controls.Add(this.about_button);
             this.Controls.Add(this.ok_button);
             this.Controls.Add(this.cancel_button);
@@ -180,5 +192,6 @@
         private System.Windows.Forms.Button cancel_button;
         private System.Windows.Forms.Button ok_button;
         private System.Windows.Forms.Button about_button;
+        private System.Windows.Forms.CheckBox showInformational_checkBox;
     }
 }

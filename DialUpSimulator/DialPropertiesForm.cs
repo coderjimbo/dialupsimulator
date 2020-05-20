@@ -26,6 +26,11 @@ namespace DialUpSimulator
             {
                 this.control_device_checkbox.Checked = (bool)Properties.Settings.Default["controlDevice"];
                 this.connection_name_textbox.Text = (string)Properties.Settings.Default["connectionName"];
+                this.showInformational_checkBox.Checked = !(bool)Properties.Settings.Default["doNotShowConnectionEstablished"];
+            }
+            else
+            {
+                this.showInformational_checkBox.Checked = true;
             }
         }
 
@@ -109,6 +114,7 @@ namespace DialUpSimulator
             Properties.Settings.Default["connectionName"] = connection_name_textbox.Text;
             Properties.Settings.Default["controlDevice"] = control_device_checkbox.Checked;
             Properties.Settings.Default["deviceToControl"] = device_list_combobox.SelectedItem;
+            Properties.Settings.Default["doNotShowConnectionEstablished"] = !this.showInformational_checkBox.Checked;
             Properties.Settings.Default.Save();
         }
     }

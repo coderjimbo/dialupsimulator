@@ -38,16 +38,15 @@
             // 
             // status_label
             // 
-            this.status_label.AutoSize = true;
             this.status_label.Location = new System.Drawing.Point(61, 12);
             this.status_label.Name = "status_label";
-            this.status_label.Size = new System.Drawing.Size(84, 13);
+            this.status_label.Size = new System.Drawing.Size(164, 32);
             this.status_label.TabIndex = 0;
-            this.status_label.Text = "Status: Dialing...";
+            this.status_label.Text = "Status: Verifying user name and password...";
             // 
             // cancel_button
             // 
-            this.cancel_button.Location = new System.Drawing.Point(328, 12);
+            this.cancel_button.Location = new System.Drawing.Point(246, 12);
             this.cancel_button.Name = "cancel_button";
             this.cancel_button.Size = new System.Drawing.Size(75, 23);
             this.cancel_button.TabIndex = 2;
@@ -74,7 +73,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(415, 51);
+            this.ClientSize = new System.Drawing.Size(333, 61);
             this.Controls.Add(this.cancel_button);
             this.Controls.Add(this.connecting_icon);
             this.Controls.Add(this.status_label);
@@ -88,7 +87,6 @@
             this.Text = "Connecting to Connection";
             ((System.ComponentModel.ISupportInitialize)(this.connecting_icon)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

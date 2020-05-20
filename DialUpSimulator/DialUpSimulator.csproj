@@ -90,11 +90,23 @@
     <Compile Include="AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConnectedToForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConnectedToForm.Designer.cs">
+      <DependentUpon>ConnectedToForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConnectingForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ConnectingForm.Designer.cs">
       <DependentUpon>ConnectingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConnectionEstablishedForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConnectionEstablishedForm.Designer.cs">
+      <DependentUpon>ConnectionEstablishedForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DialPropertiesForm.cs">
       <SubType>Form</SubType>
@@ -114,8 +126,14 @@
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConnectedToForm.resx">
+      <DependentUpon>ConnectedToForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConnectingForm.resx">
       <DependentUpon>ConnectingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConnectionEstablishedForm.resx">
+      <DependentUpon>ConnectionEstablishedForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DialPropertiesForm.resx">
       <DependentUpon>DialPropertiesForm.cs</DependentUpon>
@@ -208,6 +226,12 @@
     <None Include="sounds\dialup.wav" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="images\taskbar.png" />
+    <None Include="images\ac1.ico" />
+    <None Include="images\ac2.ico" />
+    <None Include="images\ac3.ico" />
+    <None Include="images\ac4.ico" />
+    <None Include="images\phone_dialer_icon.ico" />
     <Content Include="phone_dialer_icon.ico" />
   </ItemGroup>
   <ItemGroup>

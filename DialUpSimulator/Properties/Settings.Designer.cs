@@ -118,5 +118,17 @@ namespace DialUpSimulator.Properties {
                 this["deviceToControl"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool doNotShowConnectionEstablished {
+            get {
+                return ((bool)(this["doNotShowConnectionEstablished"]));
+            }
+            set {
+                this["doNotShowConnectionEstablished"] = value;
+            }
+        }
     }
 }

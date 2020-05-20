@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Management;
 using System.Windows.Forms;
+using System.Net.NetworkInformation;
 
 namespace DialUpSimulator
 {
@@ -20,7 +21,6 @@ namespace DialUpSimulator
                 {
                     if (((string)item["NetConnectionId"]) == (string)Properties.Settings.Default["deviceToControl"])
                     {
-                        Console.WriteLine("Disabling device");
                         item.InvokeMethod("Disable", null);
                     }
                 }
@@ -38,7 +38,6 @@ namespace DialUpSimulator
                 {
                     if (((string)item["NetConnectionId"]) == (string)Properties.Settings.Default["deviceToControl"])
                     {
-                        Console.WriteLine("Enabling device");
                         item.InvokeMethod("Enable", null);
                     }
                 }
@@ -53,6 +52,19 @@ namespace DialUpSimulator
         public static bool IsFirstRun()
         {
             return !(bool)Properties.Settings.Default["hasOpenedApplication"];
+        }
+
+        public static string GetNetworkAdapterSpeed()
+        {
+            NetworkInterface[] adapters = NetworkInterface.GetAllNetworkInterfaces();
+            foreach (NetworkInterface adapter in adapters)
+            {
+                if (adapter.Name == (string)Properties.Settings.Default["deviceToControl"])
+                {
+                    return (adapter.Speed / 1000000) + " Mbps";
+                }
+            }
+            return "N/A";
         }
     }
 }
