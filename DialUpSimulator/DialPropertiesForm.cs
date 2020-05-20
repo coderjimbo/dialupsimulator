@@ -115,6 +115,7 @@ namespace DialUpSimulator
             Properties.Settings.Default["controlDevice"] = control_device_checkbox.Checked;
             Properties.Settings.Default["deviceToControl"] = device_list_combobox.SelectedItem;
             Properties.Settings.Default["doNotShowConnectionEstablished"] = !this.showInformational_checkBox.Checked;
+            Properties.Settings.Default["showUsageAsMegabytes"] = this.dataInMegabytes_checkbox.Checked;
             Properties.Settings.Default.Save();
         }
     }

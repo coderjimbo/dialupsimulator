@@ -40,6 +40,7 @@
             this.device_icon = new System.Windows.Forms.PictureBox();
             this.monitor_icon = new System.Windows.Forms.PictureBox();
             this.showInformational_checkBox = new System.Windows.Forms.CheckBox();
+            this.dataInMegabytes_checkbox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.device_icon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.monitor_icon)).BeginInit();
             this.SuspendLayout();
@@ -149,12 +150,23 @@
             this.showInformational_checkBox.Text = "Show &informational dialog when connected";
             this.showInformational_checkBox.UseVisualStyleBackColor = true;
             // 
+            // dataInMegabytes_checkbox
+            // 
+            this.dataInMegabytes_checkbox.AutoSize = true;
+            this.dataInMegabytes_checkbox.Location = new System.Drawing.Point(158, 184);
+            this.dataInMegabytes_checkbox.Name = "dataInMegabytes_checkbox";
+            this.dataInMegabytes_checkbox.Size = new System.Drawing.Size(256, 17);
+            this.dataInMegabytes_checkbox.TabIndex = 11;
+            this.dataInMegabytes_checkbox.Text = "Show data &usage in megabytes rather than bytes";
+            this.dataInMegabytes_checkbox.UseVisualStyleBackColor = true;
+            // 
             // DialPropertiesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(424, 281);
             this.ControlBox = false;
+            this.Controls.Add(this.dataInMegabytes_checkbox);
             this.Controls.Add(this.showInformational_checkBox);
             this.Controls.Add(this.about_button);
             this.Controls.Add(this.ok_button);
@@ -193,5 +205,6 @@
         private System.Windows.Forms.Button ok_button;
         private System.Windows.Forms.Button about_button;
         private System.Windows.Forms.CheckBox showInformational_checkBox;
+        private System.Windows.Forms.CheckBox dataInMegabytes_checkbox;
     }
 }

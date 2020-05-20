@@ -54,17 +54,27 @@ namespace DialUpSimulator
             return !(bool)Properties.Settings.Default["hasOpenedApplication"];
         }
 
-        public static string GetNetworkAdapterSpeed()
+        public static string GetNetworkAdapterSpeed(NetworkInterface adapter)
+        {
+            if(adapter != null)
+            {
+                return (adapter.Speed / 1000000) + " Mbps";
+            }
+            
+            return "N/A";
+        }
+
+        public static NetworkInterface GetSelectedNetworkAdapter()
         {
             NetworkInterface[] adapters = NetworkInterface.GetAllNetworkInterfaces();
             foreach (NetworkInterface adapter in adapters)
             {
                 if (adapter.Name == (string)Properties.Settings.Default["deviceToControl"])
                 {
-                    return (adapter.Speed / 1000000) + " Mbps";
+                    return adapter;
                 }
             }
-            return "N/A";
+            return null;
         }
     }
 }

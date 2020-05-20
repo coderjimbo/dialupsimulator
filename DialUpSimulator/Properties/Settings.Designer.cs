@@ -130,5 +130,17 @@ namespace DialUpSimulator.Properties {
                 this["doNotShowConnectionEstablished"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool showUsageAsMegabytes {
+            get {
+                return ((bool)(this["showUsageAsMegabytes"]));
+            }
+            set {
+                this["showUsageAsMegabytes"] = value;
+            }
+        }
     }
 }

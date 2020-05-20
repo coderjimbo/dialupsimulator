@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,11 +15,14 @@ namespace DialUpSimulator
     public partial class ConnectedToForm : Form
     {
         DateTime initialConnectedTime;
-        int bytesSent = 0;
-        int bytesReceived = 0;
-        string connectedAtSpeed;
-
+        NetworkInterface selectedNetworkAdapter;
         Random random;
+
+        long bytesSentWhenOpened = 0;
+        long bytesSent = 0;
+        long bytesReceivedWhenOpened = 0;
+        long bytesReceived = 0;
+        string connectedAtSpeed;
 
         public ConnectedToForm()
         {
@@ -30,10 +34,28 @@ namespace DialUpSimulator
         private void SetInitialValues()
         {
             initialConnectedTime = DateTime.Now;
-            connectedAtSpeed = Utilities.GetNetworkAdapterSpeed();
+            random = new Random();
+            SetNetworkAdapterValues();
+            SetInitialByteValues();
+            SetTextValues();
+        }
+
+        private void SetTextValues()
+        {
             this.Text = "Connected to " + (string)Properties.Settings.Default["connectionName"];
             connectedAt_label.Text = "Connected at " + connectedAtSpeed;
-            random = new Random();
+        }
+
+        private void SetNetworkAdapterValues()
+        {
+            selectedNetworkAdapter = Utilities.GetSelectedNetworkAdapter();
+            connectedAtSpeed = Utilities.GetNetworkAdapterSpeed(selectedNetworkAdapter);
+        }
+
+        private void SetInitialByteValues()
+        {
+            bytesSentWhenOpened = selectedNetworkAdapter.GetIPv4Statistics().BytesSent;
+            bytesReceivedWhenOpened = selectedNetworkAdapter.GetIPv4Statistics().BytesReceived;
         }
 
         private void ShowNotificationBalloon()
@@ -75,28 +97,51 @@ namespace DialUpSimulator
 
         private void updateData_timer_Tick(object sender, EventArgs e)
         {
-            this.duration_label.Text = "Duration: " + (DateTime.Now - initialConnectedTime).ToString(@"hh\:mm\:ss");
-            
-            if(random.Next(0,2) == 1)
-            {
-                SetBytesReceived();
-                SetBytesSent();
-            }
-
-            this.networkStatus_notifyIcon.Text = this.bytesReceived + " bytes received " + this.bytesSent + " bytes sent @ " + connectedAtSpeed;
+            SetDurationText();
+            SetBytesReceived();
+            SetBytesSent();
+            SetNotifyIconText();
             SetTaskbarRandomConnectionIcon();
+        }
+
+        private void SetDurationText()
+        {
+            this.duration_label.Text = "Duration: " + (DateTime.Now - initialConnectedTime).ToString(@"hh\:mm\:ss");
+        }
+
+        private void SetNotifyIconText()
+        {
+            this.networkStatus_notifyIcon.Text = GetValueAsBytesOrMegabytes(this.bytesReceived).ToString("N0") + " " + GetTypeOfDataBeingDisplayed().ToLower() + " received " + GetValueAsBytesOrMegabytes(this.bytesSent).ToString("N0") + " " + GetTypeOfDataBeingDisplayed().ToLower() + " sent @ " + connectedAtSpeed;
         }
 
         private void SetBytesSent()
         {
-            this.bytesSent += random.Next(32, 128);
-            this.bytesSent_label.Text = "Bytes sent: " + this.bytesSent;
+            this.bytesSent += (selectedNetworkAdapter.GetIPv4Statistics().BytesSent - bytesSentWhenOpened);
+            this.bytesSent_label.Text = GetTypeOfDataBeingDisplayed() + " sent: " + GetValueAsBytesOrMegabytes(this.bytesSent).ToString("N0");
         }
 
         private void SetBytesReceived()
         {
-            this.bytesReceived += random.Next(64, 512);
-            this.bytesReceived_label.Text = "Bytes received: " + this.bytesReceived;
+            this.bytesReceived += (selectedNetworkAdapter.GetIPv4Statistics().BytesReceived - bytesReceivedWhenOpened);
+            this.bytesReceived_label.Text = GetTypeOfDataBeingDisplayed() + " received: " + GetValueAsBytesOrMegabytes(this.bytesReceived).ToString("N0");
+        }
+
+        private string GetTypeOfDataBeingDisplayed()
+        {
+            if((bool)Properties.Settings.Default["showUsageAsMegabytes"])
+            {
+                return "Megabytes";
+            }
+            return "Bytes";
+        }
+
+        private long GetValueAsBytesOrMegabytes(long byteValue)
+        {
+            if ((bool)Properties.Settings.Default["showUsageAsMegabytes"])
+            {
+                return (byteValue / 1024 / 1024);
+            }
+            return byteValue;
         }
 
         private void SetTaskbarRandomConnectionIcon()
