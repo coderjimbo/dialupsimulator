@@ -127,6 +127,7 @@
             this.networkStatus_notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("networkStatus_notifyIcon.Icon")));
             this.networkStatus_notifyIcon.Text = "text";
             this.networkStatus_notifyIcon.Visible = true;
+            this.networkStatus_notifyIcon.BalloonTipClicked += new System.EventHandler(this.networkStatus_notifyIcon_Click);
             this.networkStatus_notifyIcon.DoubleClick += new System.EventHandler(this.networkStatus_notifyIcon_Click);
             // 
             // networkStatus_icon_contextMenuStrip

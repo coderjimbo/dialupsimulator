@@ -24,6 +24,7 @@ namespace DialUpSimulator
         {
             InitializeComponent();
             SetInitialValues();
+            ShowNotificationBalloon();
         }
 
         private void SetInitialValues()
@@ -33,6 +34,18 @@ namespace DialUpSimulator
             this.Text = "Connected to " + (string)Properties.Settings.Default["connectionName"];
             connectedAt_label.Text = "Connected at " + connectedAtSpeed;
             random = new Random();
+        }
+
+        private void ShowNotificationBalloon()
+        {
+            if ((bool)Properties.Settings.Default["doNotShowConnectionEstablished"] == true)
+            {
+                this.networkStatus_notifyIcon.ShowBalloonTip(
+                    5000, 
+                    (string)Properties.Settings.Default["connectionName"] + " is now connected", 
+                    "Speed: " + connectedAtSpeed, 
+                    ToolTipIcon.Info);
+            }
         }
 
         private void networkStatus_notifyIcon_Click(object sender, EventArgs e)
